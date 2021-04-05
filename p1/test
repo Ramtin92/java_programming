@@ -1,0 +1,55 @@
+public boolean connected(String n1, String n2) {
+    LinkedList<String>temp;
+
+    // Mark all the vertices as not visited(By default set
+    // as false)
+    ////boolean[] visited = new boolean[nodes.keySet().size()];///
+    Set<String> visited = new LinkedHashSet<String>();
+
+    // Create a queue for BFS
+    ////LinkedList<String> queue = new LinkedList<String>(); ////
+    Queue<String> queue = new LinkedList<String>();
+
+    // Mark the current node as visited and enqueue it
+    ////visited[s]=true;////
+    ////queue.add(s);////
+
+    queue.add(n1);
+    visited.add(n1);
+
+    // 'i' will be used to get all adjacent vertices of a vertex
+    Iterator<Integer> i;
+    while (queue.size()!=0)
+    {
+        // Dequeue a vertex from queue and print it
+        s = queue.poll();
+
+        int n;
+        i = adj[s].listIterator();
+
+        // Get all adjacent vertices of the dequeued vertex s
+        // If a adjacent has not been visited, then mark it
+        // visited and enqueue it
+        while (i.hasNext())
+        {
+            n = i.next();
+
+            // If this adjacent node is the destination node,
+            // then return true
+            if (n==d)
+                return true;
+
+            // Else, continue to do BFS
+            if (!visited[n])
+            {
+                visited[n] = true;
+                queue.add(n);
+            }
+        }
+    }
+
+    // If BFS is complete without visited d
+    return false;
+
+     //throw new UnsupportedOperationException();
+}
